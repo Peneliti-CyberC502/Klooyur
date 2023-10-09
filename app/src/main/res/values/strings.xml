@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Klooyur</string>
+    <string name="next_destin">
+Next Destination
+</string>
+    <string name="kopi_nako_m">
+Kopi Nako Monas
+</string>
+    <string name="trips_left">
+4 Trips Left
+</string>
 </resources>
