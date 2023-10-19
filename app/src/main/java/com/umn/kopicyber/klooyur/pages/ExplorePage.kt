@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
@@ -40,28 +42,37 @@ import com.umn.kopicyber.klooyur.R
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 fun ExplorePage() {
-    val singapore = LatLng(1.35, 103.87)
+    val UMN = LatLng(-6.256703722094951, 106.61839073819928)
     val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(singapore, 10f)
+        position = CameraPosition.fromLatLngZoom(UMN, 10f)
     }
     GoogleMap(
         modifier = Modifier.fillMaxSize(),
         cameraPositionState = cameraPositionState
     ) {
         Marker(
-            state = MarkerState(position = singapore),
-            title = "Singapore",
-            snippet = "Marker in Singapore"
+            state = MarkerState(position = UMN),
+            title = "Universitas Multimedia Nusantara",
+            snippet = "Marker in Universitas Multimedia Nusantara"
         )
     }
         BottomSheetScaffold(
             modifier = Modifier
                 .padding(16.dp, 0.dp, 16.dp, 0.dp),
-            sheetContent = {
-                NextTrip()
-                CardContent()
-                CardContent()
 
+            sheetContent = {
+                Column (
+                    modifier = Modifier
+                        .padding(16.dp, 0.dp, 16.dp, 0.dp)
+                        .verticalScroll(rememberScrollState())
+                ) {
+                    NextTrip()
+                    CardContent()
+                    CardContent()
+                    CardContent()
+                    CardContent()
+
+                }
 
             },
         sheetContainerColor = androidx.compose.ui.graphics.Color(0xFF2B2930),
@@ -132,12 +143,13 @@ fun NextTrip(
 
         ) {
             Text(
+
                 text = "Dufan Ancol (Dunia Fantasi)",
-                color = androidx.compose.ui.graphics.Color(0xFFFFFFFF),
+                color = androidx.compose.ui.graphics.Color(0xFFFFFFFF)
             )
             Text(
                 text = "Jl. Lodan Timur No.7, Ancol, Kec. Pademangan, Jkt Utara, Daerah Khusus Ibukota Jakarta 14430, Indonesia",
-                color = androidx.compose.ui.graphics.Color(0xFF958DA5),
+                color = androidx.compose.ui.graphics.Color(0xFF958DA5)
             )
         }
 
