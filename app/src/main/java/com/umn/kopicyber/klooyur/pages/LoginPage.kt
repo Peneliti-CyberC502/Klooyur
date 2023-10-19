@@ -17,6 +17,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -37,27 +39,26 @@ fun LoginPage()
             .background(Color.Black)
     ) {
 
-            Box{
+
                 Image(
                     painter = painterResource(R.drawable.loginimage),
                     contentDescription = "Login Image",
                     modifier = Modifier
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .drawWithCache {
+                            val gradient = Brush.verticalGradient(
+                                colors = listOf(Color.Transparent, Color.Black),
+                                startY = size.height / 3,
+                                endY = size.height
+                            )
+                            onDrawWithContent {
+                                drawContent()
+                                drawRect(gradient, blendMode = BlendMode.Multiply)
+                            }
+                        },
                     contentScale = ContentScale.Crop
                 )
 
-        //            make gradient
-//                Box(  modifier = Modifier
-//                    .fillMaxSize()
-//                    .background(
-//                        Brush.verticalGradient(
-//                            0F to Color.Transparent,
-//                            .6F to Color.Black,
-//                            1F to Color.Black
-//                        )
-//                    )
-//                )
-            }
 
 
         Column (
