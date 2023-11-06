@@ -14,6 +14,19 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.umn.kopicyber.klooyur.R
 
 @Composable
 fun HomePage() {
@@ -39,7 +52,8 @@ fun HomePage() {
                     verticalArrangement = Arrangement.Bottom,
                 ) {
                     Box(
-                        modifier = Modifier.background(Color(0xFFB3261E),
+                        modifier = Modifier.background(
+                            Color(0xFFB3261E),
                             shape = RoundedCornerShape(8.dp))
                     ) {
                         Text("NEXT DESTINATION",
