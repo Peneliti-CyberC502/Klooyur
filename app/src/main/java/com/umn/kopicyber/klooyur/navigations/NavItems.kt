@@ -28,10 +28,5 @@ val listOfNavItems = listOf(
         label = "Profile",
         icon = Icons.Default.Person,
         route = Pagees.ProfilePage.name
-    ),
-    NavItem(
-        label = "History",
-        icon = Icons.Default.Person,
-        route = Pagees.HistoryPage.name
-    ),
+    )
 )

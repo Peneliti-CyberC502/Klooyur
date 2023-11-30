@@ -6,4 +6,5 @@ enum class Pagees {
     ExplorePage,
     ProfilePage,
     HistoryPage,
+    PlaylistPage,
 }

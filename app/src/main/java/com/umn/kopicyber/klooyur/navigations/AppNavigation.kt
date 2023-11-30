@@ -30,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.BlendMode.Companion.Color
 import androidx.navigation.NavDestination.Companion.hierarchy
 import com.umn.kopicyber.klooyur.pages.HistoryPage
+import com.umn.kopicyber.klooyur.pages.PlaylistPage
 
 //@OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -99,7 +100,7 @@ fun AppNavigation() {
                         }
                     }
                     when (tabIndex) {
-                        0 -> HomePage()
+                        0 -> HomePage(navController = navController)
                         1 -> HistoryPage()
                     }
                 }
@@ -114,6 +115,9 @@ fun AppNavigation() {
             }
             composable(route = Pagees.HistoryPage.name) {
                 HistoryPage()
+            }
+            composable(route = Pagees.PlaylistPage.name) {
+                PlaylistPage()
             }
         }
     }

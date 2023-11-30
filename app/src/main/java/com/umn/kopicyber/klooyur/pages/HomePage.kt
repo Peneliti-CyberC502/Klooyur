@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
@@ -33,17 +34,19 @@ import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.umn.kopicyber.klooyur.R
 import com.umn.kopicyber.klooyur.navigations.Pagees
 
 @Composable
-fun HomePage() {
+fun HomePage(navController: NavController) {
 
     Column (
         Modifier
@@ -204,10 +207,10 @@ fun HomePage() {
         )
 
 
-        CardPlan("coba", 10)
-        CardPlan("Jalan Jalan Gabut", 12)
-        CardPlan("Coba", 3)
-        CardPlan("UMN", 30)
+        CardPlan(navController, "coba", 10)
+        CardPlan(navController, "Jalan Jalan Gabut", 12)
+        CardPlan(navController, "Coba", 3)
+        CardPlan(navController, "UMN", 30)
 
     }
 
@@ -303,11 +306,15 @@ fun CardTrending(name: String, title: String, destination: String) {
 
 
 @Composable
-fun CardPlan(title: String, destination: Int) {
+fun CardPlan(navController: NavController, title: String, destination: Int) {
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 20.dp, top = 5.dp, end = 20.dp, bottom = 5.dp)
+            .clickable {
+                navController.navigate(route = Pagees.PlaylistPage.name)
+            }
 
     ){
 
@@ -347,8 +354,6 @@ fun CardPlan(title: String, destination: Int) {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Column(
-//                modifier = Modifier
-//                    .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 16.dp),
                 verticalArrangement = Arrangement.Center,
             ) {
                 Text(
@@ -356,7 +361,6 @@ fun CardPlan(title: String, destination: Int) {
                 style = TextStyle(
                     fontSize = 22.sp,
                     lineHeight = 28.sp,
-//                    fontFamily = FontFamily(Font(R.font.roboto)),
                     fontWeight = FontWeight(700),
                     color = Color(0xFFE6E0E9),
 
@@ -367,7 +371,6 @@ fun CardPlan(title: String, destination: Int) {
                 style = TextStyle(
                     fontSize = 14.sp,
                     lineHeight = 20.sp,
-//                    fontFamily = FontFamily(Font(R.font.roboto)),
                     fontWeight = FontWeight(400),
                     color = Color(0xFFE6E0E9),
 
@@ -382,53 +385,6 @@ fun CardPlan(title: String, destination: Int) {
                 )
 
         }
-
-
-
-
-//        Column(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(16.dp)
-//                .align(Alignment.BottomCenter),
-//            horizontalAlignment = Alignment.CenterHorizontally,
-//        ) {
-//
-//            Row {
-//
-//            Text(
-//                text = "Jalan Jalan Gabut",
-//                style = TextStyle(
-//                    fontSize = 22.sp,
-//                    lineHeight = 28.sp,
-////                    fontFamily = FontFamily(Font(R.font.roboto)),
-//                    fontWeight = FontWeight(700),
-//                    color = Color(0xFFE6E0E9),
-//
-//                    )
-//            )
-//            Text(
-//                text = "12 Destinations",
-//                style = TextStyle(
-//                    fontSize = 14.sp,
-//                    lineHeight = 20.sp,
-////                    fontFamily = FontFamily(Font(R.font.roboto)),
-//                    fontWeight = FontWeight(400),
-//                    color = Color(0xFFE6E0E9),
-//
-//                    letterSpacing = 0.25.sp,
-//                )
-//            )
-//            }
-//
-//            Image(
-//                painter = painterResource(id = R.drawable.trip_arrow),
-//                contentDescription = null,
-//
-//                )
-//        }
-
-
 
     }
 }
