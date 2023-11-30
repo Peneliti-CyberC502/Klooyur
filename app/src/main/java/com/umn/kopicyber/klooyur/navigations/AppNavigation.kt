@@ -75,37 +75,7 @@ fun AppNavigation() {
                 .padding(paddingValues)
         ) {
             composable(route = Pagees.HomePage.name) {
-//                HomePage()
-
-                var tabIndex by remember { mutableStateOf(0) }
-
-                val tabs = listOf("Trips", "History")
-
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(color = androidx.compose.ui.graphics.Color.Black)
-
-                ) {
-                    TabRow(
-                        selectedTabIndex = tabIndex,
-                        
-
-                    ) {
-                        tabs.forEachIndexed { index, title ->
-                            Tab(text = { Text(title) },
-                                selected = tabIndex == index,
-                                onClick = { tabIndex = index }
-                            )
-                        }
-                    }
-                    when (tabIndex) {
-                        0 -> HomePage(navController = navController)
-                        1 -> HistoryPage()
-                    }
-                }
-
-
+                HomePage(navController = navController)
             }
             composable(route = Pagees.ExplorePage.name) {
                 ExplorePage()
@@ -114,7 +84,7 @@ fun AppNavigation() {
                 ProfilePage()
             }
             composable(route = Pagees.HistoryPage.name) {
-                HistoryPage()
+                HistoryPage(navController = navController)
             }
             composable(route = Pagees.PlaylistPage.name) {
                 PlaylistPage()

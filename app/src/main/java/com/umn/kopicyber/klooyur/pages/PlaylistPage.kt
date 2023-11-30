@@ -39,7 +39,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.umn.kopicyber.klooyur.R
 
-@Preview
 @Composable
 fun PlaylistPage() {
 

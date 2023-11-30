@@ -26,8 +26,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.drawWithCache
-import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -48,7 +49,7 @@ fun HomePage(navController: NavController) {
         Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-//            .background(Color.Black)
+            .background(Color.Black)
             .verticalScroll(rememberScrollState())
     ) {
 
@@ -79,28 +80,57 @@ fun HomePage(navController: NavController) {
                 contentScale = ContentScale.Crop
             )
 
-
-
-
-
             Column(
-                Modifier
-                    .shadow(
-                        elevation = 2.dp,
-                        spotColor = Color(0x4D000000),
-                        ambientColor = Color(0x4D000000)
-                    )
-                    .shadow(
-                        elevation = 6.dp,
-                        spotColor = Color(0x26000000),
-                        ambientColor = Color(0x26000000)
-                    )
+                modifier = Modifier
+                    .fillMaxWidth()
                     .padding(start = 20.dp, top = 32.dp, end = 20.dp, bottom = 32.dp),
-                verticalArrangement = Arrangement.spacedBy(6.dp, Alignment.Bottom),
-                horizontalAlignment = Alignment.CenterHorizontally,
-
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
                 ) {
 
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 30.dp),
+                    horizontalArrangement = Arrangement.spacedBy(35.dp, Alignment.CenterHorizontally),
+                    verticalAlignment = Alignment.Top,
+                ) {
+                    Text(
+                        text = "Trips",
+
+                        modifier = Modifier.drawBehind {
+                            val strokeWidthPx = 1.dp.toPx()
+                            val verticalOffset = size.height - 2.sp.toPx()
+                            drawLine(
+                                color = Color(0xFFE6E0E9),
+                                strokeWidth = strokeWidthPx,
+                                start = Offset(0f, verticalOffset),
+                                end = Offset(size.width, verticalOffset)
+                            )
+                        },
+
+                        style = TextStyle(
+                            fontSize = 20.sp,
+                            lineHeight = 28.sp,
+                            fontWeight = FontWeight(600),
+                            color = Color(0xFFE6E0E9),
+                        )
+                    )
+
+                    Text(
+                        text = "History",
+                        modifier = Modifier
+                            .clickable {
+                                navController.navigate(route = Pagees.HistoryPage.name)
+                            },
+                        style = TextStyle(
+                            fontSize = 20.sp,
+                            lineHeight = 28.sp,
+                            fontWeight = FontWeight(600),
+                            color = Color(0xFFE6E0E9),
+                        )
+                    )
+                }
 
                     Box(
                         modifier = Modifier
@@ -139,7 +169,7 @@ fun HomePage(navController: NavController) {
                         letterSpacing = 0.5.sp,
                     )
                 )
-                }
+            }
 
 
 
