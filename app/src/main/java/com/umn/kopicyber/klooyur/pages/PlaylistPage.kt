@@ -85,9 +85,7 @@ fun PlaylistPage() {
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
 
-            Column(
-
-                ) {
+            Column{
                 Text(
                     text = "Jalan-Jalan Gabut",
                     style = TextStyle(
@@ -108,8 +106,6 @@ fun PlaylistPage() {
                 )
             }
 
-
-//                Text(text = "hallo")
                 SmallFloatingActionButton(
                     onClick = {  },
                     modifier = Modifier
