@@ -87,7 +87,7 @@ fun AppNavigation() {
                 HistoryPage(navController = navController)
             }
             composable(route = Pagees.PlaylistPage.name) {
-                PlaylistPage()
+                PlaylistPage(navController = navController)
             }
         }
     }

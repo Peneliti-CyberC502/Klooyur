@@ -2,6 +2,7 @@ package com.umn.kopicyber.klooyur.pages
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,10 +38,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.umn.kopicyber.klooyur.R
+import com.umn.kopicyber.klooyur.navigations.Pagees
 
 @Composable
-fun PlaylistPage() {
+fun PlaylistPage(navController: NavController) {
 
     Column (
         Modifier
@@ -74,7 +77,14 @@ fun PlaylistPage() {
                     },
                 contentScale = ContentScale.Crop
             )
-
+            Image(
+                painter = painterResource(id = R.drawable.back_arrow),
+                modifier = Modifier
+                    .clickable {
+                        navController.navigate(route = Pagees.HomePage.name)
+                    },
+                contentDescription = null,
+            )
 
             Row(
                 modifier = Modifier
