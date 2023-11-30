@@ -1,6 +1,7 @@
 package com.umn.kopicyber.klooyur.pages
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,8 +16,14 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -33,6 +40,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.umn.kopicyber.klooyur.R
+import com.umn.kopicyber.klooyur.navigations.Pagees
 
 @Composable
 fun HomePage() {
@@ -41,7 +49,7 @@ fun HomePage() {
         Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .background(Color.Black)
+//            .background(Color.Black)
             .verticalScroll(rememberScrollState())
     ) {
 
@@ -93,35 +101,6 @@ fun HomePage() {
                 horizontalAlignment = Alignment.CenterHorizontally,
 
                 ) {
-
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(35.dp, Alignment.CenterHorizontally),
-                    verticalAlignment = Alignment.Top,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 16.dp)
-                ) {
-                    Text(
-                        text = "Trips",
-
-                        style = TextStyle(
-                            fontSize = 20.sp,
-                            lineHeight = 28.sp,
-                            fontWeight = FontWeight(600),
-                            color = Color(0xFFE6E0E9),
-                        )
-                    )
-
-                    Text(
-                        text = "History",
-                        style = TextStyle(
-                            fontSize = 20.sp,
-                            lineHeight = 28.sp,
-                            fontWeight = FontWeight(600),
-                            color = Color(0xFFE6E0E9),
-                        )
-                    )
-                }
 
 
                     Box(
@@ -323,7 +302,6 @@ fun CardTrending(name: String, title: String, destination: String) {
 }
 
 
-
 @Composable
 fun CardPlan(title: String, destination: Int) {
     Box(
@@ -360,20 +338,6 @@ fun CardPlan(title: String, destination: Int) {
                 },
             contentScale = ContentScale.Crop
         )
-
-
-
-
-//        Image(
-//            painter = painterResource(id = R.drawable.kopinako),
-//            contentDescription = null,
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .height(88.dp)
-//                .clip(RoundedCornerShape(10.dp)),
-//            contentScale = ContentScale.Crop
-//        )
-
 
         Row(
             modifier = Modifier

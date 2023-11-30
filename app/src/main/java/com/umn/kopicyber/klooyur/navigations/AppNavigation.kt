@@ -1,5 +1,8 @@
 package com.umn.kopicyber.klooyur.navigations
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.NavigationBar
@@ -17,9 +20,16 @@ import com.umn.kopicyber.klooyur.pages.ProfilePage
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.BlendMode.Companion.Color
 import androidx.navigation.NavDestination.Companion.hierarchy
+import com.umn.kopicyber.klooyur.pages.HistoryPage
 
 //@OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -64,13 +74,46 @@ fun AppNavigation() {
                 .padding(paddingValues)
         ) {
             composable(route = Pagees.HomePage.name) {
-                HomePage()
+//                HomePage()
+
+                var tabIndex by remember { mutableStateOf(0) }
+
+                val tabs = listOf("Trips", "History")
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(color = androidx.compose.ui.graphics.Color.Black)
+
+                ) {
+                    TabRow(
+                        selectedTabIndex = tabIndex,
+                        
+
+                    ) {
+                        tabs.forEachIndexed { index, title ->
+                            Tab(text = { Text(title) },
+                                selected = tabIndex == index,
+                                onClick = { tabIndex = index }
+                            )
+                        }
+                    }
+                    when (tabIndex) {
+                        0 -> HomePage()
+                        1 -> HistoryPage()
+                    }
+                }
+
+
             }
             composable(route = Pagees.ExplorePage.name) {
                 ExplorePage()
             }
             composable(route = Pagees.ProfilePage.name) {
                 ProfilePage()
+            }
+            composable(route = Pagees.HistoryPage.name) {
+                HistoryPage()
             }
         }
     }
