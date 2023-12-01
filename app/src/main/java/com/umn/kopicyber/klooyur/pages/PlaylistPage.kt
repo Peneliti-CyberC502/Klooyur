@@ -11,7 +11,11 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -118,10 +122,7 @@ fun PlaylistPage(navController: NavController) {
                 SmallFloatingActionButton(
                     onClick = {  },
                     modifier = Modifier
-//                        make bottom end
                         .padding(start = 16.dp),
-
-
                     containerColor = Color(0xFF2B2930),
                     contentColor = Color(0xFFD0BCFF)
                 ) {
@@ -133,33 +134,118 @@ fun PlaylistPage(navController: NavController) {
 
         }
 
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(),
-            contentAlignment = Alignment.Center
+//        Box(
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .fillMaxHeight(),
+//            contentAlignment = Alignment.Center
+//
+//        ) {
+//            Text(
+//                text = "Belum ada destinasi.\nPilih destinasi sekarang!",
+//                style = TextStyle(
+//                    fontSize = 24.sp,
+//                    lineHeight = 32.sp,
+//                    fontWeight = FontWeight(700),
+//                    color = Color(0xFFE6E0E9),
+//                ),
+//                textAlign = TextAlign.Center
+//            )
+//        }
 
+
+
+        PlaylistCard()
+
+    }
+
+}
+
+
+@Composable
+fun PlaylistCard() {
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(12.dp))
+            .background(Color(0xFF36343B))
+            .height(80.dp)
+            .width(80.dp)
+            .padding(start = 16.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+
+        Image(
+            painter = painterResource(id = R.drawable.avatar),
+            contentDescription = "avatar",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(40.dp)
+                .clip(RoundedCornerShape(100))
+        )
+
+
+        Column(
+            modifier = Modifier
+//                .weight(1f)
+                .padding(16.dp)
         ) {
+
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+
             Text(
-                text = "Belum ada destinasi.\nPilih destinasi sekarang!",
+                text = "Kopi Nako",
                 style = TextStyle(
-                    fontSize = 24.sp,
-                    lineHeight = 32.sp,
-                    fontWeight = FontWeight(700),
+                    fontSize = 20.sp,
+                    lineHeight = 24.sp,
+                    fontWeight = FontWeight(500),
                     color = Color(0xFFE6E0E9),
-                ),
-                textAlign = TextAlign.Center
+                    letterSpacing = 0.15.sp,
+                )
             )
+
+            Text(
+                text = "12.00",
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    lineHeight = 20.sp,
+                    fontWeight = FontWeight(400),
+                    color = Color(0xFFE6E0E9),
+                    letterSpacing = 0.25.sp,
+                )
+            )
+            }
+
+            Text(
+                text = "Jl. Alam Utama No. 05",
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    lineHeight = 20.sp,
+                    fontWeight = FontWeight(400),
+                    color = Color(0xFFE6E0E9),
+                    letterSpacing = 0.25.sp,
+                )
+            )
+
+
         }
 
 
 
-
+        Image(painter = painterResource(R.drawable.kopinako), contentDescription = null,
+            modifier = Modifier
+//                .padding(start = 16.dp, top = 16.dp, bottom = 16.dp)
+//                .clip(RoundedCornerShape(8.dp))
+                .height(80.dp)
+                .width(80.dp),
+//                .shadow(4.dp),
+            contentScale = ContentScale.FillBounds
+        )
     }
 
-
-
-
 }
-
 
