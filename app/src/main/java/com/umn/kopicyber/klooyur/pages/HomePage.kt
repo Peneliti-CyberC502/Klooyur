@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -16,40 +17,39 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Icon
+import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.drawWithCache
-import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.umn.kopicyber.klooyur.R
 import com.umn.kopicyber.klooyur.navigations.Pagees
 
 @Composable
-fun HomePage() {
+fun HomePage(navController: NavController) {
 
     Column (
         Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-//            .background(Color.Black)
+            .background(Color.Black)
             .verticalScroll(rememberScrollState())
     ) {
 
@@ -80,28 +80,57 @@ fun HomePage() {
                 contentScale = ContentScale.Crop
             )
 
-
-
-
-
             Column(
-                Modifier
-                    .shadow(
-                        elevation = 2.dp,
-                        spotColor = Color(0x4D000000),
-                        ambientColor = Color(0x4D000000)
-                    )
-                    .shadow(
-                        elevation = 6.dp,
-                        spotColor = Color(0x26000000),
-                        ambientColor = Color(0x26000000)
-                    )
+                modifier = Modifier
+                    .fillMaxWidth()
                     .padding(start = 20.dp, top = 32.dp, end = 20.dp, bottom = 32.dp),
-                verticalArrangement = Arrangement.spacedBy(6.dp, Alignment.Bottom),
-                horizontalAlignment = Alignment.CenterHorizontally,
-
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
                 ) {
 
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 30.dp),
+                    horizontalArrangement = Arrangement.spacedBy(35.dp, Alignment.CenterHorizontally),
+                    verticalAlignment = Alignment.Top,
+                ) {
+                    Text(
+                        text = "Trips",
+
+                        modifier = Modifier.drawBehind {
+                            val strokeWidthPx = 1.dp.toPx()
+                            val verticalOffset = size.height - 2.sp.toPx()
+                            drawLine(
+                                color = Color(0xFFE6E0E9),
+                                strokeWidth = strokeWidthPx,
+                                start = Offset(0f, verticalOffset),
+                                end = Offset(size.width, verticalOffset)
+                            )
+                        },
+
+                        style = TextStyle(
+                            fontSize = 20.sp,
+                            lineHeight = 28.sp,
+                            fontWeight = FontWeight(600),
+                            color = Color(0xFFE6E0E9),
+                        )
+                    )
+
+                    Text(
+                        text = "History",
+                        modifier = Modifier
+                            .clickable {
+                                navController.navigate(route = Pagees.HistoryPage.name)
+                            },
+                        style = TextStyle(
+                            fontSize = 20.sp,
+                            lineHeight = 28.sp,
+                            fontWeight = FontWeight(600),
+                            color = Color(0xFFE6E0E9),
+                        )
+                    )
+                }
 
                     Box(
                         modifier = Modifier
@@ -140,7 +169,7 @@ fun HomePage() {
                         letterSpacing = 0.5.sp,
                     )
                 )
-                }
+            }
 
 
 
@@ -204,11 +233,29 @@ fun HomePage() {
         )
 
 
-        CardPlan("coba", 10)
-        CardPlan("Jalan Jalan Gabut", 12)
-        CardPlan("Coba", 3)
-        CardPlan("UMN", 30)
+        CardPlan(navController, "coba", 10)
+        CardPlan(navController, "Jalan Jalan Gabut", 12)
+        CardPlan(navController, "Coba", 3)
+        CardPlan(navController, "UMN", 30)
 
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.End
+        ) {
+            SmallFloatingActionButton(
+                onClick = { /* Handle FAB click */ },
+                modifier = Modifier,
+                containerColor = Color(0xFF2B2930),
+                contentColor = Color(0xFFD0BCFF)
+            ) {
+                Icon(Icons.Filled.Add, "Small floating action button.")
+            }
+        }
     }
 
 }
@@ -303,11 +350,15 @@ fun CardTrending(name: String, title: String, destination: String) {
 
 
 @Composable
-fun CardPlan(title: String, destination: Int) {
+fun CardPlan(navController: NavController, title: String, destination: Int) {
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 20.dp, top = 5.dp, end = 20.dp, bottom = 5.dp)
+            .clickable {
+                navController.navigate(route = Pagees.PlaylistPage.name)
+            }
 
     ){
 
@@ -347,8 +398,6 @@ fun CardPlan(title: String, destination: Int) {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Column(
-//                modifier = Modifier
-//                    .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 16.dp),
                 verticalArrangement = Arrangement.Center,
             ) {
                 Text(
@@ -356,7 +405,6 @@ fun CardPlan(title: String, destination: Int) {
                 style = TextStyle(
                     fontSize = 22.sp,
                     lineHeight = 28.sp,
-//                    fontFamily = FontFamily(Font(R.font.roboto)),
                     fontWeight = FontWeight(700),
                     color = Color(0xFFE6E0E9),
 
@@ -367,7 +415,6 @@ fun CardPlan(title: String, destination: Int) {
                 style = TextStyle(
                     fontSize = 14.sp,
                     lineHeight = 20.sp,
-//                    fontFamily = FontFamily(Font(R.font.roboto)),
                     fontWeight = FontWeight(400),
                     color = Color(0xFFE6E0E9),
 
@@ -382,53 +429,6 @@ fun CardPlan(title: String, destination: Int) {
                 )
 
         }
-
-
-
-
-//        Column(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(16.dp)
-//                .align(Alignment.BottomCenter),
-//            horizontalAlignment = Alignment.CenterHorizontally,
-//        ) {
-//
-//            Row {
-//
-//            Text(
-//                text = "Jalan Jalan Gabut",
-//                style = TextStyle(
-//                    fontSize = 22.sp,
-//                    lineHeight = 28.sp,
-////                    fontFamily = FontFamily(Font(R.font.roboto)),
-//                    fontWeight = FontWeight(700),
-//                    color = Color(0xFFE6E0E9),
-//
-//                    )
-//            )
-//            Text(
-//                text = "12 Destinations",
-//                style = TextStyle(
-//                    fontSize = 14.sp,
-//                    lineHeight = 20.sp,
-////                    fontFamily = FontFamily(Font(R.font.roboto)),
-//                    fontWeight = FontWeight(400),
-//                    color = Color(0xFFE6E0E9),
-//
-//                    letterSpacing = 0.25.sp,
-//                )
-//            )
-//            }
-//
-//            Image(
-//                painter = painterResource(id = R.drawable.trip_arrow),
-//                contentDescription = null,
-//
-//                )
-//        }
-
-
 
     }
 }

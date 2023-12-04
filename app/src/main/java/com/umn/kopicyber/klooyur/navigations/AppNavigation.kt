@@ -30,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.BlendMode.Companion.Color
 import androidx.navigation.NavDestination.Companion.hierarchy
 import com.umn.kopicyber.klooyur.pages.HistoryPage
+import com.umn.kopicyber.klooyur.pages.PlaylistPage
 
 //@OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -74,37 +75,7 @@ fun AppNavigation() {
                 .padding(paddingValues)
         ) {
             composable(route = Pagees.HomePage.name) {
-//                HomePage()
-
-                var tabIndex by remember { mutableStateOf(0) }
-
-                val tabs = listOf("Trips", "History")
-
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(color = androidx.compose.ui.graphics.Color.Black)
-
-                ) {
-                    TabRow(
-                        selectedTabIndex = tabIndex,
-                        
-
-                    ) {
-                        tabs.forEachIndexed { index, title ->
-                            Tab(text = { Text(title) },
-                                selected = tabIndex == index,
-                                onClick = { tabIndex = index }
-                            )
-                        }
-                    }
-                    when (tabIndex) {
-                        0 -> HomePage()
-                        1 -> HistoryPage()
-                    }
-                }
-
-
+                HomePage(navController = navController)
             }
             composable(route = Pagees.ExplorePage.name) {
                 ExplorePage()
@@ -113,7 +84,10 @@ fun AppNavigation() {
                 ProfilePage()
             }
             composable(route = Pagees.HistoryPage.name) {
-                HistoryPage()
+                HistoryPage(navController = navController)
+            }
+            composable(route = Pagees.PlaylistPage.name) {
+                PlaylistPage(navController = navController)
             }
         }
     }
