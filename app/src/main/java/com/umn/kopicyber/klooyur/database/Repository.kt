@@ -1,45 +1,35 @@
 package com.umn.kopicyber.klooyur.database
 
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 
 
-class Repository(private val listDao: ListDao, private val routesDao: RoutesDao) {
+interface Repository {
 
-    val allList: LiveData<List<Trips>> = listDao.getAllList()
-    val allRoutes: LiveData<List<Routes>> = routesDao.getAllRoute()
+    fun getAllList(): Flow<List<Trips>>
 
-    suspend fun insertList(trips: Trips) {
-        listDao.insertList(trips)
-    }
+    fun getAllRoute(): Flow<List<Routes>>
 
-    suspend fun insertRoute(routes: Routes) {
-        routesDao.insertRoute(routes)
-    }
+    fun getListId(listIds: IntArray): Flow<List<Trips>>
 
-    suspend fun updateList(trips: Trips) {
-        listDao.updateList(trips)
-    }
+    fun getRouteId(routesIds: IntArray): Flow<List<Routes>>
 
-    suspend fun updateRoute(routes: Routes) {
-        routesDao.updateRoute(routes)
-    }
+    suspend fun insertList(trips: Trips)
 
-    suspend fun deleteList(trips: Trips) {
-        listDao.deleteList(trips)
-    }
+    suspend fun insertRoute(routes: Routes)
 
-    suspend fun deleteRoute(routes: Routes) {
-        routesDao.deleteRoute(routes)
-    }
+    suspend fun updateList(trips: Trips)
 
-    suspend fun getListId(listIds: IntArray): LiveData<List<Trips>> {
-        return listDao.getListId(listIds)
-    }
+    suspend fun updateRoute(routes: Routes)
 
-    suspend fun getRouteId(routesIds: IntArray): LiveData<List<Routes>> {
-        return routesDao.getRouteId(routesIds)
-    }
+    suspend fun deleteList(trips: Trips)
+
+    suspend fun deleteRoute(routes: Routes)
+
+
 
 }
 

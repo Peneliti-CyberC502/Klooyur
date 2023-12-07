@@ -1,21 +1,21 @@
 package com.umn.kopicyber.klooyur.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ListDao {
     @Query("SELECT * FROM trips_list")
-    fun getAllList(): LiveData<List<Trips>>
+    fun getAllList(): Flow<List<Trips>>
 
     //    @Query("SELECT * FROM trips_list WHERE list_id IN (:listIds)")
     @Query("SELECT * FROM trips_list WHERE list_id =:listIds")
-    fun getListId(listIds: IntArray): LiveData<List<Trips>>
+    fun getListId(listIds: IntArray): Flow<List<Trips>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertList(trips: Trips)
@@ -30,10 +30,10 @@ interface ListDao {
 @Dao
 interface RoutesDao {
     @Query("SELECT * FROM trips_routes")
-    fun getAllRoute(): LiveData<List<Routes>>
+    fun getAllRoute(): Flow<List<Routes>>
 
     @Query("SELECT * FROM trips_routes WHERE routes_id =:routesIds")
-    fun getRouteId(routesIds: IntArray): LiveData<List<Routes>>
+    fun getRouteId(routesIds: IntArray): Flow<List<Routes>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertRoute(vararg routes: Routes)
