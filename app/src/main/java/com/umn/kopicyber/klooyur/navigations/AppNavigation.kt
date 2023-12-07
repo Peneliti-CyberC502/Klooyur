@@ -29,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.BlendMode.Companion.Color
 import androidx.navigation.NavDestination.Companion.hierarchy
+import com.umn.kopicyber.klooyur.pages.AddTripPage
 import com.umn.kopicyber.klooyur.pages.HistoryPage
 import com.umn.kopicyber.klooyur.pages.PlaylistPage
 
@@ -88,6 +89,9 @@ fun AppNavigation() {
             }
             composable(route = Pagees.PlaylistPage.name) {
                 PlaylistPage(navController = navController)
+            }
+            composable(route = Pagees.AddTripPage.name) {
+                AddTripPage()
             }
         }
     }

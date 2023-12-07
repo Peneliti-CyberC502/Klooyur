@@ -248,7 +248,9 @@ fun HomePage(navController: NavController) {
             horizontalArrangement = Arrangement.End
         ) {
             SmallFloatingActionButton(
-                onClick = { /* Handle FAB click */ },
+                onClick = {
+                    navController.navigate(route = Pagees.AddTripPage.name)
+                },
                 modifier = Modifier,
                 containerColor = Color(0xFF2B2930),
                 contentColor = Color(0xFFD0BCFF)
