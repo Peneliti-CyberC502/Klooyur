@@ -20,6 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavDestination.Companion.hierarchy
 import com.umn.kopicyber.klooyur.pages.AddTripPage
+import com.umn.kopicyber.klooyur.pages.FormPage
 import com.umn.kopicyber.klooyur.pages.HistoryPage
 import com.umn.kopicyber.klooyur.pages.PlaylistPage
 import com.umn.kopicyber.klooyur.viewmodels.HomeViewModel
@@ -68,7 +69,7 @@ fun AppNavigation() {
                 .padding(paddingValues)
         ) {
             composable(route = Pagees.HomePage.name) {
-                HomePage(navController = navController)
+                HomePage(navController = navController, homeViewModel = homeViewModel)
             }
             composable(route = Pagees.ExplorePage.name) {
                 ExplorePage()
@@ -84,6 +85,9 @@ fun AppNavigation() {
             }
             composable(route = Pagees.AddTripPage.name) {
                 AddTripPage(navController = navController, homeViewModel = homeViewModel)
+            }
+            composable(route = Pagees.FormPage.name) {
+                FormPage(navController = navController, homeViewModel = homeViewModel)
             }
         }
     }

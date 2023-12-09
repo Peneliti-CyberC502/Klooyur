@@ -48,7 +48,9 @@ import com.umn.kopicyber.klooyur.navigations.Pagees
 
 
 @Composable
-fun PlaylistPage(navController: NavController) {
+fun PlaylistPage(
+    navController: NavController
+) {
 
     Column (
         Modifier
@@ -121,7 +123,9 @@ fun PlaylistPage(navController: NavController) {
             }
 
                 SmallFloatingActionButton(
-                    onClick = {  },
+                    onClick = {
+                        navController.navigate(route = Pagees.FormPage.name)
+                    },
                     modifier = Modifier
                         .padding(start = 16.dp),
                     containerColor = Color(0xFF2B2930),

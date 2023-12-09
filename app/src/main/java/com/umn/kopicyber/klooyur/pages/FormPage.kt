@@ -28,13 +28,21 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.umn.kopicyber.klooyur.R
+import com.umn.kopicyber.klooyur.database.Routes
+import com.umn.kopicyber.klooyur.database.Trips
+import com.umn.kopicyber.klooyur.viewmodels.HomeViewModel
 
 
 @Composable
-fun FormPage() {
+fun FormPage(
+    navController: NavHostController,
+    homeViewModel: HomeViewModel
+) {
     Column (
         modifier = androidx.compose.ui.Modifier
             .fillMaxSize()
@@ -52,7 +60,7 @@ fun FormPage() {
         var textRencana by remember { mutableStateOf(TextFieldValue("")) }
         TextField(
             value = textRencana,
-            label = { Text(text = "Nama Rencana") },
+            label = { Text(text = "Jam") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             onValueChange = { it ->
                 textRencana = it
@@ -87,7 +95,7 @@ fun FormPage() {
         var inputAlamat by remember { mutableStateOf(TextFieldValue("")) }
         OutlinedTextField(
             value = inputAlamat,
-            label = { Text(text = "Alamaat Pergi") },
+            label = { Text(text = "Alamat Pergi") },
             onValueChange = {
                 inputAlamat = it
             },
@@ -95,7 +103,27 @@ fun FormPage() {
         )
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+
+                val newRouteTime = textRencana.text
+                val newRouteDate = inputTanggal.text
+                val newRouteAddress = inputAlamat.text
+
+                if (newRouteTime.isNotBlank() && newRouteDate.isNotBlank() && newRouteAddress.isNotBlank()) {
+                    val newRoute = Routes(
+                        tripsid = 1,
+                        placeid = newRouteTime,
+                        photos = "hello world",
+                        placetitle = newRouteAddress,
+                        startdate = newRouteDate,
+                        order = 1
+                    )
+                    homeViewModel.insertRoute(newRoute)
+                    navController.popBackStack()
+                }
+
+
+            },
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = Color(0xFF6750A4),
                 contentColor = Color.White

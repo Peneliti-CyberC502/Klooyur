@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -48,10 +49,9 @@ import com.umn.kopicyber.klooyur.viewmodels.HomeViewModel
 
 @Composable
 fun HomePage(
-    navController: NavHostController
+    navController: NavHostController,
+    homeViewModel: HomeViewModel
 ) {
-    val homeViewModel = viewModel(modelClass = HomeViewModel::class.java)
-    val homeState = homeViewModel.state.value
 
     Column (
         Modifier
@@ -245,6 +245,8 @@ fun HomePage(
         CardPlan(navController, "Jalan Jalan Gabut", 12)
         CardPlan(navController, "Coba", 3)
         CardPlan(navController, "UMN", 30)
+
+
 
 
         Spacer(modifier = Modifier.weight(1f))

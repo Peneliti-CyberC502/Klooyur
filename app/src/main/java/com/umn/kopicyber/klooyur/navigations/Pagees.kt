@@ -8,4 +8,5 @@ enum class Pagees {
     HistoryPage,
     PlaylistPage,
     AddTripPage,
+    FormPage
 }

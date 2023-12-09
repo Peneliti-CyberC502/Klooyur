@@ -47,7 +47,9 @@ class HomeViewModel(
 
     fun insertRoute(routes: Routes) {
         viewModelScope.launch {
-            repository.insertRoute(routes)
+            withContext(Dispatchers.IO) {
+                repository.insertRoute(routes)
+            }
         }
     }
 
