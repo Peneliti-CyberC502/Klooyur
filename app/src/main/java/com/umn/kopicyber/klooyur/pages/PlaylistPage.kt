@@ -46,6 +46,7 @@ import androidx.navigation.NavController
 import com.umn.kopicyber.klooyur.R
 import com.umn.kopicyber.klooyur.navigations.Pagees
 
+
 @Composable
 fun PlaylistPage(navController: NavController) {
 
@@ -133,6 +134,14 @@ fun PlaylistPage(navController: NavController) {
 
 
         }
+
+
+
+
+//        PlaylistCard()
+
+
+
 
 //        Box(
 //            modifier = Modifier

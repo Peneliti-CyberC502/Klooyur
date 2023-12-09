@@ -15,7 +15,7 @@ interface ListDao {
 
     //    @Query("SELECT * FROM trips_list WHERE list_id IN (:listIds)")
     @Query("SELECT * FROM trips_list WHERE list_id =:listIds")
-    fun getListId(listIds: IntArray): Flow<List<Trips>>
+    fun getListId(listIds: Int): Flow<List<Trips>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertList(trips: Trips)
@@ -33,7 +33,7 @@ interface RoutesDao {
     fun getAllRoute(): Flow<List<Routes>>
 
     @Query("SELECT * FROM trips_routes WHERE routes_id =:routesIds")
-    fun getRouteId(routesIds: IntArray): Flow<List<Routes>>
+    fun getRouteId(routesIds: Int): Flow<List<Routes>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertRoute(vararg routes: Routes)

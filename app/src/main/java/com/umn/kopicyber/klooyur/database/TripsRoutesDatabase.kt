@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
 
-@Database(entities = [Trips::class, Routes::class], version = 1)
+@Database(entities = [Trips::class, Routes::class], version = 1, exportSchema = false)
 abstract class TripsRoutesDatabase : RoomDatabase() {
     abstract fun listDao(): ListDao
     abstract fun routesDao(): RoutesDao

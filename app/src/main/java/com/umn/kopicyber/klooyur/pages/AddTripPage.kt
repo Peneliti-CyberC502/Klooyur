@@ -16,46 +16,60 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import com.umn.kopicyber.klooyur.database.Trips
+import com.umn.kopicyber.klooyur.viewmodels.HomeViewModel
 
 @Composable
-fun AddTripPage() {
+fun AddTripPage(
+    navController: NavController,
+    homeViewModel: HomeViewModel
+) {
+//    val homeViewModel = viewModel(modelClass = HomeViewModel::class.java)
+//    val tripState = homeViewModel.state.value
+
     Column {
         Text(text = "Nama Perjalanan")
 
-        InputText()
+
+        var title by remember { mutableStateOf(TextFieldValue("")) }
+        TextField(
+            value = title,
+            onValueChange = {
+                title = it
+            },
+            label = { Text(text = "Jalan-Jalan Gabut") },
+            placeholder = { Text(text = "") },
+        )
 
 
-    }
-}
+        Row(
+            modifier = androidx.compose.ui.Modifier
+                .padding(top = 16.dp, bottom = 16.dp)
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            Button(onClick = {
+                navController.popBackStack()
+            }) {
+                Text(text = "Batal")
+            }
 
-@Composable
-fun InputText() {
-    var text by remember { mutableStateOf(TextFieldValue("")) }
-    TextField(
-        value = text,
-        onValueChange = {
-            text = it
-        },
-        label = { Text(text = "Jalan-Jalan Gabut") },
-        placeholder = { Text(text = "") },
-    )
+            Button(onClick = {
 
-    Row(
-        modifier = androidx.compose.ui.Modifier
-            .padding(top = 16.dp, bottom = 16.dp)
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        Button(onClick = {
-            //your onclick code here
-        }) {
-            Text(text = "Batal")
-        }
+                val newTripTitle = title.text
+                if (newTripTitle.isNotBlank()) {
+                    val newTrip = Trips(title = newTripTitle, desc = "aaa", startdate = "bbb")
+                    homeViewModel.insertList(newTrip)
+                    navController.popBackStack()
+                }
 
-        Button(onClick = {
-            //your onclick code here
-        }) {
-            Text(text = "Buat")
+
+            }) {
+                Text(text = "Buat")
+            }
+
         }
 
     }
