@@ -32,8 +32,8 @@ interface RoutesDao {
     @Query("SELECT * FROM trips_routes")
     fun getAllRoute(): Flow<List<Routes>>
 
-    @Query("SELECT * FROM trips_routes WHERE routes_id =:routesIds")
-    fun getRouteId(routesIds: Int): Flow<List<Routes>>
+    @Query("SELECT * FROM trips_routes WHERE tripsid = :listId")
+    fun getRouteId(listId: Int): Flow<List<Routes>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertRoute(vararg routes: Routes)

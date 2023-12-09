@@ -23,31 +23,5 @@ class Repository (
     suspend fun deleteRoute(routes: Routes) = routesDao.deleteRoute(routes)
 
 
-
-
-
-
-//    fun getAllList(): Flow<List<Trips>> {}
-//
-//    fun getAllRoute(): Flow<List<Routes>>
-//
-//    fun getListId(listIds: IntArray): Flow<List<Trips>>
-//
-//    fun getRouteId(routesIds: IntArray): Flow<List<Routes>>
-//
-//    suspend fun insertList(trips: Trips)
-//
-//    suspend fun insertRoute(routes: Routes)
-//
-//    suspend fun updateList(trips: Trips)
-//
-//    suspend fun updateRoute(routes: Routes)
-//
-//    suspend fun deleteList(trips: Trips)
-//
-//    suspend fun deleteRoute(routes: Routes)
-
-
-
 }
 

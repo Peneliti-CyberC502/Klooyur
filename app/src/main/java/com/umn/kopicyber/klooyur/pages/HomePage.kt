@@ -24,6 +24,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -43,8 +48,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.umn.kopicyber.klooyur.R
+import com.umn.kopicyber.klooyur.database.Routes
 import com.umn.kopicyber.klooyur.navigations.Pagees
 import com.umn.kopicyber.klooyur.viewmodels.HomeViewModel
+import kotlinx.coroutines.flow.firstOrNull
 
 
 @Composable
@@ -241,11 +248,29 @@ fun HomePage(
         )
 
 
-        CardPlan(navController, "coba", 10)
-        CardPlan(navController, "Jalan Jalan Gabut", 12)
-        CardPlan(navController, "Coba", 3)
-        CardPlan(navController, "UMN", 30)
+//        CardPlan(navController, "coba", 10)
+//        CardPlan(navController, "Jalan Jalan Gabut", 12)
+//        CardPlan(navController, "Coba", 3)
+//        CardPlan(navController, "UMN", 30)
 
+        val list = homeViewModel.state.value.list
+        val routes = homeViewModel.state.value.routes
+
+
+//        for (trip in list) {
+//            CardPlan(navController, trip.title, routes.size)
+//        }
+
+        for (trip in list) {
+            var routeSize by remember { mutableStateOf(0) }
+
+            LaunchedEffect(trip.list_id) {
+                val routeList = homeViewModel.getrouteId(trip.list_id).firstOrNull()
+                routeSize = routeList?.size ?: 0
+            }
+
+            CardPlan(navController, trip.title, routeSize)
+        }
 
 
 

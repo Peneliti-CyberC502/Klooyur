@@ -8,6 +8,7 @@ import com.umn.kopicyber.klooyur.database.Repository
 import com.umn.kopicyber.klooyur.database.Routes
 import com.umn.kopicyber.klooyur.database.Trips
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -18,6 +19,8 @@ class HomeViewModel(
 ):ViewModel() {
     var state = mutableStateOf(HomeState())
         private set
+
+
 
     init {
       getlist()
@@ -35,14 +38,8 @@ class HomeViewModel(
 
     }
 
-    fun getrouteId(id: Int) {
-        viewModelScope.launch {
-            repository.getRouteId(id).collectLatest {
-                state.value = state.value.copy(
-                    routes = it
-                )
-            }
-        }
+    fun getrouteId(id: Int): Flow<List<Routes>> {
+        return repository.getRouteId(id)
     }
 
     fun insertRoute(routes: Routes) {
