@@ -31,6 +31,8 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.umn.kopicyber.klooyur.R
 import com.umn.kopicyber.klooyur.database.Routes
@@ -40,8 +42,9 @@ import com.umn.kopicyber.klooyur.viewmodels.HomeViewModel
 
 @Composable
 fun FormPage(
-    navController: NavHostController,
-    homeViewModel: HomeViewModel
+    navController: NavController,
+    homeViewModel: HomeViewModel = viewModel(),
+    id: Int
 ) {
     Column (
         modifier = androidx.compose.ui.Modifier
@@ -54,7 +57,9 @@ fun FormPage(
             color = androidx.compose.ui.graphics.Color.White,
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp)
         )
 
         var textRencana by remember { mutableStateOf(TextFieldValue("")) }
@@ -62,10 +67,12 @@ fun FormPage(
             value = textRencana,
             label = { Text(text = "Jam") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            onValueChange = { it ->
-                textRencana = it
+            onValueChange = { teks ->
+                textRencana = teks
             },
-            modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp)
 
         )
 
@@ -84,7 +91,9 @@ fun FormPage(
 
                 )
             },
-            modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp)
         )
 
 
@@ -99,7 +108,9 @@ fun FormPage(
             onValueChange = {
                 inputAlamat = it
             },
-            modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp)
         )
 
         Button(
@@ -111,7 +122,7 @@ fun FormPage(
 
                 if (newRouteTime.isNotBlank() && newRouteDate.isNotBlank() && newRouteAddress.isNotBlank()) {
                     val newRoute = Routes(
-                        tripsid = 1,
+                        tripsid = id,
                         placeid = newRouteTime,
                         photos = "hello world",
                         placetitle = newRouteAddress,
@@ -129,7 +140,9 @@ fun FormPage(
                 contentColor = Color.White
             ),
             shape = RoundedCornerShape(50),
-            modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp)
 
         ) {
             Text(

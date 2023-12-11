@@ -125,7 +125,9 @@ fun PlaylistPage(
 
                 SmallFloatingActionButton(
                     onClick = {
-                        navController.navigate(route = Pagees.FormPage.name)
+                        navController.navigate(
+                            "${Pagees.FormPage.name}/$id"
+                        )
                     },
                     modifier = Modifier
                         .padding(start = 16.dp),

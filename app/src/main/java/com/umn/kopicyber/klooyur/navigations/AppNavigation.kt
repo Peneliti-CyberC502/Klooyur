@@ -98,8 +98,12 @@ fun AppNavigation() {
             composable(route = Pagees.AddTripPage.name) {
                 AddTripPage(navController = navController, homeViewModel = homeViewModel)
             }
-            composable(route = Pagees.FormPage.name) {
-                FormPage(navController = navController, homeViewModel = homeViewModel)
+            composable(
+                route = Pagees.FormPage.name + "/{id}",
+                arguments = listOf(navArgument("id") { type = NavType.IntType })
+            ) { backStackEntry ->
+                val id = backStackEntry.arguments?.getInt("id")
+                id?.let { FormPage(navController = navController, homeViewModel = homeViewModel, id = it) }
             }
         }
     }
