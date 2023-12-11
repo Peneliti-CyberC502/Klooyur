@@ -19,6 +19,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.umn.kopicyber.klooyur.pages.AddTripPage
 import com.umn.kopicyber.klooyur.pages.FormPage
 import com.umn.kopicyber.klooyur.pages.HistoryPage
@@ -80,9 +82,19 @@ fun AppNavigation() {
             composable(route = Pagees.HistoryPage.name) {
                 HistoryPage(navController = navController)
             }
-            composable(route = Pagees.PlaylistPage.name) {
-                PlaylistPage(navController = navController)
+//            composable(route = Pagees.PlaylistPage.name) {
+//                PlaylistPage(navController = navController, homeViewModel = homeViewModel)
+//            }
+
+            composable(
+                route = Pagees.PlaylistPage.name + "/{id}",
+                arguments = listOf(navArgument("id") { type = NavType.IntType })
+            ) { backStackEntry ->
+                val id = backStackEntry.arguments?.getInt("id")
+                id?.let { PlaylistPage(navController = navController, homeViewModel = homeViewModel, id = it) }
             }
+
+
             composable(route = Pagees.AddTripPage.name) {
                 AddTripPage(navController = navController, homeViewModel = homeViewModel)
             }

@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,14 +22,14 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithCache
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -38,18 +37,20 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.umn.kopicyber.klooyur.R
 import com.umn.kopicyber.klooyur.navigations.Pagees
+import com.umn.kopicyber.klooyur.viewmodels.HomeViewModel
 
 
 @Composable
 fun PlaylistPage(
-    navController: NavController
+    navController: NavController,
+    homeViewModel: HomeViewModel = viewModel(),
+    id: Int
 ) {
 
     Column (
@@ -141,34 +142,12 @@ fun PlaylistPage(
 
 
 
+        val routeList by homeViewModel.getrouteId(id).collectAsState(initial = emptyList())
 
-//        PlaylistCard()
+        for (route in routeList) {
+            PlaylistCard(route.placetitle, route.startdate, route.placeid)
+        }
 
-
-
-
-//        Box(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .fillMaxHeight(),
-//            contentAlignment = Alignment.Center
-//
-//        ) {
-//            Text(
-//                text = "Belum ada destinasi.\nPilih destinasi sekarang!",
-//                style = TextStyle(
-//                    fontSize = 24.sp,
-//                    lineHeight = 32.sp,
-//                    fontWeight = FontWeight(700),
-//                    color = Color(0xFFE6E0E9),
-//                ),
-//                textAlign = TextAlign.Center
-//            )
-//        }
-
-
-
-        PlaylistCard()
 
     }
 
@@ -176,7 +155,7 @@ fun PlaylistPage(
 
 
 @Composable
-fun PlaylistCard() {
+fun PlaylistCard(title: String, time: String, address: String) {
 
     Row(
         modifier = Modifier
@@ -211,7 +190,7 @@ fun PlaylistCard() {
             ) {
 
             Text(
-                text = "Kopi Nako",
+                text = title,
                 style = TextStyle(
                     fontSize = 20.sp,
                     lineHeight = 24.sp,
@@ -222,7 +201,7 @@ fun PlaylistCard() {
             )
 
             Text(
-                text = "12.00",
+                text = time,
                 style = TextStyle(
                     fontSize = 14.sp,
                     lineHeight = 20.sp,
@@ -234,7 +213,7 @@ fun PlaylistCard() {
             }
 
             Text(
-                text = "Jl. Alam Utama No. 05",
+                text = address,
                 style = TextStyle(
                     fontSize = 14.sp,
                     lineHeight = 20.sp,

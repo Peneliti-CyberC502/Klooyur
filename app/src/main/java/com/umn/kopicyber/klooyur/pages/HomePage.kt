@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -44,11 +43,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.umn.kopicyber.klooyur.R
-import com.umn.kopicyber.klooyur.database.Routes
 import com.umn.kopicyber.klooyur.navigations.Pagees
 import com.umn.kopicyber.klooyur.viewmodels.HomeViewModel
 import kotlinx.coroutines.flow.firstOrNull
@@ -269,7 +266,7 @@ fun HomePage(
                 routeSize = routeList?.size ?: 0
             }
 
-            CardPlan(navController, trip.title, routeSize)
+            CardPlan(navController,trip.list_id, trip.title, routeSize)
         }
 
 
@@ -387,14 +384,16 @@ fun CardTrending(name: String, title: String, destination: String) {
 
 
 @Composable
-fun CardPlan(navController: NavController, title: String, destination: Int) {
+fun CardPlan(navController: NavController, id: Int, title: String, destination: Int) {
 
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 20.dp, top = 5.dp, end = 20.dp, bottom = 5.dp)
             .clickable {
-                navController.navigate(route = Pagees.PlaylistPage.name)
+                navController.navigate(
+                    "${Pagees.PlaylistPage.name}/$id"
+                )
             }
 
     ){
