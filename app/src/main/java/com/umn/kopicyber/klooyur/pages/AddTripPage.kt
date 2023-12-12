@@ -10,6 +10,7 @@ import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -20,6 +21,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.umn.kopicyber.klooyur.database.Trips
 import com.umn.kopicyber.klooyur.viewmodels.HomeViewModel
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 @Composable
 fun AddTripPage(
@@ -34,6 +37,9 @@ fun AddTripPage(
 
 
         var title by remember { mutableStateOf(TextFieldValue("")) }
+        val currentDateTime = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+
         TextField(
             value = title,
             onValueChange = {
@@ -60,7 +66,8 @@ fun AddTripPage(
 
                 val newTripTitle = title.text
                 if (newTripTitle.isNotBlank()) {
-                    val newTrip = Trips(title = newTripTitle, desc = "aaa", startdate = "bbb")
+                    val formattedDateTime = currentDateTime.format(formatter)
+                    val newTrip = Trips(title = newTripTitle, desc = "aaa", startdate = formattedDateTime)
                     homeViewModel.insertList(newTrip)
                     navController.popBackStack()
                 }
