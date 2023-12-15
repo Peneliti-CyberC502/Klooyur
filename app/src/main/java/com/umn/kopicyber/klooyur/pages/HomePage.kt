@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -59,8 +60,7 @@ fun HomePage(
 
     Column (
         Modifier
-            .fillMaxWidth()
-            .fillMaxHeight()
+            .fillMaxSize()
             .background(Color.Black)
             .verticalScroll(rememberScrollState())
     ) {
@@ -109,7 +109,6 @@ fun HomePage(
                 ) {
                     Text(
                         text = "Trips",
-
                         modifier = Modifier.drawBehind {
                             val strokeWidthPx = 1.dp.toPx()
                             val verticalOffset = size.height - 2.sp.toPx()
@@ -125,7 +124,7 @@ fun HomePage(
                             fontSize = 20.sp,
                             lineHeight = 28.sp,
                             fontWeight = FontWeight(600),
-                            color = Color(0xFFE6E0E9),
+//                            color = Color(0xFFE6E0E9),
                         )
                     )
 
@@ -139,7 +138,7 @@ fun HomePage(
                             fontSize = 20.sp,
                             lineHeight = 28.sp,
                             fontWeight = FontWeight(600),
-                            color = Color(0xFFE6E0E9),
+//                            color = Color(0xFFE6E0E9),
                         )
                     )
                 }
@@ -182,13 +181,7 @@ fun HomePage(
                     )
                 )
             }
-
-
-
         }
-
-
-
 
         Text(
             text = "Trending Now",
@@ -199,7 +192,7 @@ fun HomePage(
                 fontSize = 16.sp,
                 lineHeight = 24.sp,
                 fontWeight = FontWeight(500),
-                color = Color(0xFFEADDFF),
+//                color = Color(0xFFEADDFF),
                 letterSpacing = 0.15.sp,
             )
         )
@@ -239,7 +232,7 @@ fun HomePage(
                 fontSize = 16.sp,
                 lineHeight = 24.sp,
                 fontWeight = FontWeight(500),
-                color = Color(0xFFEADDFF),
+//                color = Color(0xFFEADDFF),
                 letterSpacing = 0.15.sp,
             )
         )
@@ -345,7 +338,7 @@ fun CardTrending(name: String, title: String, destination: String) {
                 fontSize = 12.sp,
                 lineHeight = 16.sp,
                 fontWeight = FontWeight(500),
-                color = Color(0xFFE6E0E9),
+//                color = Color(0xFFE6E0E9),
 
                 letterSpacing = 0.5.sp,
 
@@ -362,7 +355,7 @@ fun CardTrending(name: String, title: String, destination: String) {
                 fontSize = 14.sp,
                 lineHeight = 20.sp,
                 fontWeight = FontWeight(500),
-                color = Color(0xFFE6E0E9),
+//                color = Color(0xFFE6E0E9),
                 letterSpacing = 0.1.sp,
             )
         )
@@ -373,7 +366,7 @@ fun CardTrending(name: String, title: String, destination: String) {
                 fontSize = 12.sp,
                 lineHeight = 16.sp,
                 fontWeight = FontWeight(400),
-                color = Color(0xFF958DA5),
+//                color = Color(0xFF958DA5),
             )
         )
 
@@ -442,7 +435,7 @@ fun CardPlan(navController: NavController, id: Int, title: String, destination: 
                     fontSize = 22.sp,
                     lineHeight = 28.sp,
                     fontWeight = FontWeight(700),
-                    color = Color(0xFFE6E0E9),
+//                    color = Color(0xFFE6E0E9),
 
                     )
             )
@@ -452,7 +445,7 @@ fun CardPlan(navController: NavController, id: Int, title: String, destination: 
                     fontSize = 14.sp,
                     lineHeight = 20.sp,
                     fontWeight = FontWeight(400),
-                    color = Color(0xFFE6E0E9),
+//                    color = Color(0xFFE6E0E9),
 
                     letterSpacing = 0.25.sp,
                 )
