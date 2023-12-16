@@ -38,6 +38,8 @@ import com.umn.kopicyber.klooyur.R
 import com.umn.kopicyber.klooyur.database.Routes
 import com.umn.kopicyber.klooyur.database.Trips
 import com.umn.kopicyber.klooyur.viewmodels.HomeViewModel
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 @Composable
@@ -52,6 +54,10 @@ fun FormPage(
             .background(androidx.compose.ui.graphics.Color.Black)
 
     ) {
+
+        val currentDateTime = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+
         Text(
             text = "Rencana Pergi",
             color = androidx.compose.ui.graphics.Color.White,
@@ -121,12 +127,13 @@ fun FormPage(
                 val newRouteAddress = inputAlamat.text
 
                 if (newRouteTime.isNotBlank() && newRouteDate.isNotBlank() && newRouteAddress.isNotBlank()) {
+                    val formattedDateTime = currentDateTime.format(formatter)
                     val newRoute = Routes(
                         tripsid = id,
                         placeid = newRouteTime,
                         photos = "hello world",
                         placetitle = newRouteAddress,
-                        startdate = newRouteDate,
+                        startdate = formattedDateTime,
                         order = 1
                     )
                     homeViewModel.insertRoute(newRoute)
