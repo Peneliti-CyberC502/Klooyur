@@ -11,10 +11,12 @@ import com.umn.kopicyber.klooyur.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-//        ini masih janky bet implementasinya
+        // Buat fullscreen
         enableEdgeToEdge(statusBarStyle = SystemBarStyle.dark(Color.Transparent.toArgb()))
         super.onCreate(savedInstanceState)
+
         setContent{
+            // Aplikasikan tema
             AppTheme(
                 useDarkTheme = true
             ) {

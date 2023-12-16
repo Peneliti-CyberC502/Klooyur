@@ -36,14 +36,14 @@ import com.umn.kopicyber.klooyur.viewmodels.HomeViewModel
 fun AppNavigation() {
     val navController = rememberNavController()
     val homeViewModel = viewModel(modelClass = HomeViewModel::class.java)
-
-
     Scaffold(
         bottomBar = {
             NavigationBar {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination
 
+                // List of all the navigation items
+                // TODO: improve performance untuk pindah page
                 listOfNavItems.forEach{ navItem ->
                     NavigationBarItem(
                         selected = currentDestination?.hierarchy?.any { it.route == navItem.route } == true,
@@ -67,6 +67,7 @@ fun AppNavigation() {
                 }
             }
         },
+        // Hapus padding di bawah dan atas biar keliatan fullscreen
         contentWindowInsets = WindowInsets(0.dp),
     ) { paddingValues ->
         NavHost(
@@ -88,10 +89,6 @@ fun AppNavigation() {
             composable(route = Pagees.HistoryPage.name) {
                 HistoryPage(navController = navController)
             }
-//            composable(route = Pagees.PlaylistPage.name) {
-//                PlaylistPage(navController = navController, homeViewModel = homeViewModel)
-//            }
-
             composable(
                 route = Pagees.PlaylistPage.name + "/{id}",
                 arguments = listOf(navArgument("id") { type = NavType.IntType })
