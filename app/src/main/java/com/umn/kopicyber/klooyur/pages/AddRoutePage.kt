@@ -79,12 +79,12 @@ fun AddRoutePage(
              * ADDRESS PICKER
              */
             TextField(modifier = Modifier
-                .fillMaxWidth()
-                .clickable {
-                        navController.navigate("findRoute")
-                },
-                enabled = false,
-                readOnly = true,
+                .fillMaxWidth(),
+//                .clickable {
+//                        navController.navigate("findRoute")
+//                },
+//                enabled = false,
+//                readOnly = true,
                 value = selectedAddress.value,
                 onValueChange = { selectedAddress.value = it },
                 label = { Text("Address") },
@@ -167,7 +167,7 @@ private fun addRouteToDB(
     val route = Routes(
         tripsId = tripId,
         placeId = selectedAddress,
-        placeTitle = "TODO",
+        placeTitle = selectedAddress,
         startTime = "$selectedDate $selectedTime",
         order = routeCount + 1
     )
