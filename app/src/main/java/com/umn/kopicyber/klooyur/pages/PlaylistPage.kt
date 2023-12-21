@@ -16,6 +16,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Divider
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -113,7 +114,7 @@ fun PlaylistPage(
                 },
                 modifier = Modifier.padding(start = 16.dp),
             ) {
-                Icon(Icons.Filled.Add, "Small floating action button.")
+                Icon(Icons.Filled.PlayArrow, "Small floating action button.")
             }
         },
         contentWindowInsets = WindowInsets(0.dp),
