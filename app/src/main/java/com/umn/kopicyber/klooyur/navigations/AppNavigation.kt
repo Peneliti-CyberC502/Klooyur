@@ -2,34 +2,35 @@ package com.umn.kopicyber.klooyur.navigations
 
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.runtime.Composable
-import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import com.umn.kopicyber.klooyur.pages.HomePage
-import com.umn.kopicyber.klooyur.pages.ExplorePage
-import com.umn.kopicyber.klooyur.pages.ProfilePage
 import androidx.compose.material3.Scaffold
-import androidx.compose.ui.Modifier
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.umn.kopicyber.klooyur.pages.AddRoutePage
 import com.umn.kopicyber.klooyur.pages.AddTripPage
-import com.umn.kopicyber.klooyur.pages.FormPage
-import com.umn.kopicyber.klooyur.pages.HistoryPage
+import com.umn.kopicyber.klooyur.pages.AddressAutoCompletePage
+import com.umn.kopicyber.klooyur.pages.ExplorePage
+import com.umn.kopicyber.klooyur.pages.MainPage
 import com.umn.kopicyber.klooyur.pages.PlaylistPage
+import com.umn.kopicyber.klooyur.pages.ProfilePage
 import com.umn.kopicyber.klooyur.viewmodels.HomeViewModel
+import com.umn.kopicyber.klooyur.viewmodels.TripDetailViewModel
+import com.umn.kopicyber.klooyur.viewmodels.TripDetailViewModelFactory
 
 //@OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,11 +45,12 @@ fun AppNavigation() {
 
                 // List of all the navigation items
                 // TODO: improve performance untuk pindah page
-                listOfNavItems.forEach{ navItem ->
+
+                listOfNavItems.forEach { navItem ->
                     NavigationBarItem(
                         selected = currentDestination?.hierarchy?.any { it.route == navItem.route } == true,
                         onClick = {
-                            navController.navigate(navItem.route){
+                            navController.navigate(navItem.route) {
                                 popUpTo(navController.graph.findStartDestination().id) {
                                     saveState = true
                                 }
@@ -78,7 +80,8 @@ fun AppNavigation() {
                 .padding(paddingValues)
         ) {
             composable(route = Pagees.HomePage.name) {
-                HomePage(navController = navController, homeViewModel = homeViewModel)
+//                HomePage(navController = navController, homeViewModel = homeViewModel)
+                MainPage(navController = navController)
             }
             composable(route = Pagees.ExplorePage.name) {
                 ExplorePage()
@@ -86,15 +89,15 @@ fun AppNavigation() {
             composable(route = Pagees.ProfilePage.name) {
                 ProfilePage()
             }
-            composable(route = Pagees.HistoryPage.name) {
-                HistoryPage(navController = navController)
-            }
+//            composable(route = Pagees.HistoryPage.name) {
+//                HistoryPage(navController = navController)
+//            }
             composable(
                 route = Pagees.PlaylistPage.name + "/{id}",
                 arguments = listOf(navArgument("id") { type = NavType.IntType })
             ) { backStackEntry ->
                 val id = backStackEntry.arguments?.getInt("id")
-                id?.let { PlaylistPage(navController = navController, homeViewModel = homeViewModel, id = it) }
+                id?.let { PlaylistPage(navController = navController, tripId = it) }
             }
 
 
@@ -102,11 +105,26 @@ fun AppNavigation() {
                 AddTripPage(navController = navController, homeViewModel = homeViewModel)
             }
             composable(
-                route = Pagees.FormPage.name + "/{id}",
+                route = Pagees.AddRoutePage.name + "/{id}",
                 arguments = listOf(navArgument("id") { type = NavType.IntType })
             ) { backStackEntry ->
                 val id = backStackEntry.arguments?.getInt("id")
-                id?.let { FormPage(navController = navController, homeViewModel = homeViewModel, id = it) }
+                val tripDetailViewModel =
+                    viewModel<TripDetailViewModel>(factory = TripDetailViewModelFactory(id!!))
+
+                AddRoutePage(
+                    tripId = id,
+                    insertRoute = { route -> tripDetailViewModel.insertRoute((route)) },
+                    routesCount = tripDetailViewModel.state.routes.size,
+                    navController = navController,
+                )
+            }
+            
+            composable(
+                // TODO: ganti penamaan routenya (taruh di pagees)
+                route = "findRoute"
+            ) {
+                AddressAutoCompletePage(navController = navController)
             }
         }
     }

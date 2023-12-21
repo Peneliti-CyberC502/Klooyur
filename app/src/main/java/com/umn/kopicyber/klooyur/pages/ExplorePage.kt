@@ -2,7 +2,6 @@ package com.umn.kopicyber.klooyur.pages
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,12 +20,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
@@ -43,38 +41,37 @@ fun ExplorePage() {
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(UMN, 10f)
     }
-    GoogleMap(
-        modifier = Modifier.fillMaxSize(),
-        cameraPositionState = cameraPositionState
-    ) {
-        Marker(
-            state = MarkerState(position = UMN),
-            title = "Universitas Multimedia Nusantara",
-            snippet = "Marker in Universitas Multimedia Nusantara"
-        )
-    }
         BottomSheetScaffold(
-            modifier = Modifier
-                .padding(16.dp, 0.dp, 16.dp, 0.dp),
-
+            // TODO: bikin dinamis sesuai NextTrip(?)
+            sheetPeekHeight = 135.dp,
+            sheetShape = RoundedCornerShape(8.dp),
             sheetContent = {
                 Column (
                     modifier = Modifier
                         .padding(16.dp, 0.dp, 16.dp, 0.dp)
-                        .verticalScroll(rememberScrollState())
+                        .verticalScroll(rememberScrollState()),
                 ) {
                     NextTrip()
                     CardContent()
                     CardContent()
                     CardContent()
                     CardContent()
-
                 }
 
             },
-        sheetContainerColor = androidx.compose.ui.graphics.Color(0xFF2B2930),
+        ) {
+            GoogleMap(
+                modifier = Modifier.fillMaxSize(),
+                cameraPositionState = cameraPositionState
+            ) {
+                Marker(
+                    state = MarkerState(position = UMN),
+                    title = "Universitas Multimedia Nusantara",
+                    snippet = "Marker in Universitas Multimedia Nusantara"
+                )
+            }
 
-        ) { }
+        }
     }
 
 

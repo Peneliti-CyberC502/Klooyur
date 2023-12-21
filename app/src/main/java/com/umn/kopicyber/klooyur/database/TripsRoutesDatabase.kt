@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
 
-@Database(entities = [Trips::class, Routes::class], version = 1, exportSchema = false)
+@Database(entities = [Trips::class, Routes::class], version = 5, exportSchema = false)
 abstract class TripsRoutesDatabase : RoomDatabase() {
     abstract fun listDao(): ListDao
     abstract fun routesDao(): RoutesDao
@@ -20,6 +20,7 @@ abstract class TripsRoutesDatabase : RoomDatabase() {
         fun getDatabase(context: Context): TripsRoutesDatabase {
             return Instance ?: synchronized(this) {
                 Room.databaseBuilder(context, TripsRoutesDatabase::class.java, "trips_routes_database")
+                    .fallbackToDestructiveMigration()
                     .build().also {
                         Instance = it
                     }

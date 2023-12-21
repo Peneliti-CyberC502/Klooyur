@@ -6,11 +6,10 @@ object Graph {
     lateinit var db: TripsRoutesDatabase
         private set
 
-    val repository by lazy {
-        Repository(
+    val localDBRepository by lazy {
+        LocalDBRepository(
             listDao = db.listDao(),
             routesDao = db.routesDao()
-
         )
     }
 
