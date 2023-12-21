@@ -7,4 +7,6 @@ enum class Pagees {
     ProfilePage,
     HistoryPage,
     PlaylistPage,
+    AddTripPage,
+    AddRoutePage
 }

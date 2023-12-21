@@ -37,66 +37,20 @@ import com.umn.kopicyber.klooyur.R
 import com.umn.kopicyber.klooyur.navigations.Pagees
 
 @Composable
-fun HistoryPage(navController: NavController) {
+fun HistoryPage() {
     Column(
         Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .background(Color.Black)
+            .padding(top = 96.dp)
     ) {
-
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 20.dp, top = 32.dp, end = 20.dp, bottom = 32.dp),
-        horizontalArrangement = Arrangement.spacedBy(35.dp, Alignment.CenterHorizontally),
-        verticalAlignment = Alignment.Top,
-    ) {
-        Text(
-            text = "Trips",
-            modifier = Modifier
-                .clickable {
-                    navController.navigate(route = Pagees.HomePage.name)
-                },
-            style = TextStyle(
-                fontSize = 20.sp,
-                lineHeight = 28.sp,
-                fontWeight = FontWeight(600),
-                color = Color(0xFF4A4458),
-            )
-        )
-
-        Text(
-            text = "History",
-            modifier = Modifier.drawBehind {
-                val strokeWidthPx = 1.dp.toPx()
-                val verticalOffset = size.height - 2.sp.toPx()
-                drawLine(
-                    color = Color(0xFFE6E0E9),
-                    strokeWidth = strokeWidthPx,
-                    start = Offset(0f, verticalOffset),
-                    end = Offset(size.width, verticalOffset)
-                )
-            },
-
-            style = TextStyle(
-                fontSize = 20.sp,
-                lineHeight = 28.sp,
-                fontWeight = FontWeight(600),
-                color = Color(0xFFE6E0E9),
-            )
-        )
-    }
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-//            .background(Color(0xFF1E1A21))
             .padding(start = 8.dp, end = 8.dp),
-
-
         content = {
             items(10) {
                 CardHistory()
@@ -109,12 +63,10 @@ fun HistoryPage(navController: NavController) {
 
 @Composable
 fun CardHistory() {
-
     Column(
         Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-//            .wrapContentHeight()
             .padding(10.dp)
     ) {
 
