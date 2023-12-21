@@ -43,7 +43,7 @@ fun ProfilePage() {
                 .height(150.dp),
             contentAlignment = Alignment.Center,
 
-        ) {
+            ) {
             Image(
                 painter = painterResource(id = R.drawable.background),
                 contentDescription = "Background profile",
@@ -114,7 +114,7 @@ fun ProfilePage() {
 
             ListItem(
                 headlineContent = {
-                    Text("Scheduled Plans")
+                    Text("Settings")
                 },
 //                supportingContent = {
 //                    Text("Secondary text that is long and perhaps goes onto another line")
@@ -131,7 +131,7 @@ fun ProfilePage() {
 
             ListItem(
                 headlineContent = {
-                    Text("Favorites")
+                    Text("Github Repo")
                 },
 //                supportingContent = {
 //                    Text("Secondary text that is long and perhaps goes onto another line")
@@ -146,74 +146,6 @@ fun ProfilePage() {
             )
             Divider()
         }
-
-        ListItem(
-            headlineContent = {
-                Text("Settings")
-            },
-//                supportingContent = {
-//                    Text("Secondary text that is long and perhaps goes onto another line")
-//                },
-//                leadingContent = {
-//                    Icon(
-//                        Icons.Filled.Favorite,
-//                        contentDescription = "Localized description",
-//                    )
-//                },
-//                trailingContent = { Text("meta") }
-        )
-        Divider()
-
-        ListItem(
-            headlineContent = {
-                Text("Language")
-            },
-//                supportingContent = {
-//                    Text("Secondary text that is long and perhaps goes onto another line")
-//                },
-//                leadingContent = {
-//                    Icon(
-//                        Icons.Filled.Favorite,
-//                        contentDescription = "Localized description",
-//                    )
-//                },
-//                trailingContent = { Text("meta") }
-        )
-        Divider()
-
-        ListItem(
-            headlineContent = {
-                Text("Feedback")
-            },
-//                supportingContent = {
-//                    Text("Secondary text that is long and perhaps goes onto another line")
-//                },
-//                leadingContent = {
-//                    Icon(
-//                        Icons.Filled.Favorite,
-//                        contentDescription = "Localized description",
-//                    )
-//                },
-//                trailingContent = { Text("meta") }
-        )
-        Divider()
-
-        ListItem(
-            headlineContent = {
-                Text("Help Center")
-            },
-//                supportingContent = {
-//                    Text("Secondary text that is long and perhaps goes onto another line")
-//                },
-//                leadingContent = {
-//                    Icon(
-//                        Icons.Filled.Favorite,
-//                        contentDescription = "Localized description",
-//                    )
-//                },
-//                trailingContent = { Text("meta") }
-        )
-        Divider()
 
         ListItem(
             headlineContent = {

@@ -1,7 +1,7 @@
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+//import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
-val anonKey: String = gradleLocalProperties(rootDir).getProperty("SUPABASE_ANON_KEY")
-val supabaseUrl: String = gradleLocalProperties(rootDir).getProperty("SUPABASE_URL")
+//val anonKey: String = gradleLocalProperties(rootDir).getProperty("SUPABASE_ANON_KEY")
+//val supabaseUrl: String = gradleLocalProperties(rootDir).getProperty("SUPABASE_URL")
 //val secret: String = gradleLocalProperties(rootDir).getProperty("SECRET")
 
 plugins {
