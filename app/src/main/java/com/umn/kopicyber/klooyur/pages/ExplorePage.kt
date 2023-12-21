@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.android.gms.maps.model.CameraPosition
@@ -75,7 +76,7 @@ fun ExplorePage() {
     }
 
 
-//@Preview
+//@Preview(showBackground = true)
 @Composable
 fun NextTrip(
     backgroundColor: androidx.compose.ui.graphics.Color = androidx.compose.ui.graphics.Color(0xFF211F26),
@@ -152,7 +153,7 @@ fun NextTrip(
 }
 
 
-
+//@Preview(showBackground = true)
 @Composable
 fun CardContent() {
     Column (
@@ -175,6 +176,7 @@ fun CardContent() {
  }
 
 
+//@Preview(showBackground = true)
 @Composable
 fun Batas() {
 //    make box containing icon location and text 14km

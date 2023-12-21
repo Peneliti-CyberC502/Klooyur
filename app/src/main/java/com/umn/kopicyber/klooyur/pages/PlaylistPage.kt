@@ -1,6 +1,8 @@
 package com.umn.kopicyber.klooyur.pages
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,6 +12,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -35,6 +38,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
@@ -62,11 +66,32 @@ fun PlaylistPage(
                 TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
 
             LargeTopAppBar(title = {
-                Text(
-                    text = tripData.title,
-                    style = MaterialTheme.typography.headlineSmall,
-                    color = MaterialTheme.colorScheme.onBackground
-                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+
+                    Text(
+                        text = tripData.title,
+                        style = MaterialTheme.typography.headlineSmall,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+
+                    Button(
+                        onClick = { /*TODO*/ },
+                        modifier = Modifier
+                            .padding(end = 16.dp)
+                            .height(50.dp)
+                            .width(50.dp)
+                            .clip(RoundedCornerShape(20)),
+                    ) {
+                        Icon(Icons.Filled.PlayArrow, "Play Button for Current Trip")
+                    }
+
+                }
+
             }, navigationIcon = {
                 IconButton(onClick = { navController.popBackStack() }) {
                     Icon(
@@ -114,7 +139,7 @@ fun PlaylistPage(
                 },
                 modifier = Modifier.padding(start = 16.dp),
             ) {
-                Icon(Icons.Filled.PlayArrow, "Small floating action button.")
+                Icon(Icons.Filled.Add, "Small floating action button.")
             }
         },
         contentWindowInsets = WindowInsets(0.dp),
