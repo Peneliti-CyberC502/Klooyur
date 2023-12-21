@@ -253,54 +253,54 @@ fun CurrentTrip() {
             contentScale = ContentScale.Crop
         )
 
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 24.dp),
-
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Box(
-                modifier = Modifier
-                    .background(
-                        color = MaterialTheme.colorScheme.errorContainer,
-                        shape = RoundedCornerShape(size = 25.dp)
-                    )
-                    .padding(start = 10.dp, top = 3.dp, end = 10.dp, bottom = 3.dp)
-            ) {
-                Text(
-                    text = "Next Destination ",
-                    style = TextStyle(
-                        fontSize = 12.sp,
-                        lineHeight = 16.sp,
-                        fontWeight = FontWeight(800),
-                        color = MaterialTheme.colorScheme.onErrorContainer
-                    )
-                )
-            }
-
-            Text(
-                text = "Kopi Nako Monas",
-                style = TextStyle(
-                    fontSize = 32.sp,
-                    lineHeight = 40.sp,
-                    fontWeight = FontWeight(400),
-                    color = Color(0xFFFFFFFF),
-                )
-            )
-
-            Text(
-                text = "JALAN JALAN GABUT - 4 Trips Left",
-                style = TextStyle(
-                    fontSize = 12.sp,
-                    lineHeight = 16.sp,
-                    fontWeight = FontWeight(700),
-                    color = Color(0xFFFFFFFF),
-                    letterSpacing = 0.5.sp,
-                )
-            )
-        }
+//        Column(
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .padding(top = 24.dp),
+//
+//            verticalArrangement = Arrangement.Center,
+//            horizontalAlignment = Alignment.CenterHorizontally
+//        ) {
+//            Box(
+//                modifier = Modifier
+//                    .background(
+//                        color = MaterialTheme.colorScheme.errorContainer,
+//                        shape = RoundedCornerShape(size = 25.dp)
+//                    )
+//                    .padding(start = 10.dp, top = 3.dp, end = 10.dp, bottom = 3.dp)
+//            ) {
+//                Text(
+//                    text = "Next Destination ",
+//                    style = TextStyle(
+//                        fontSize = 12.sp,
+//                        lineHeight = 16.sp,
+//                        fontWeight = FontWeight(800),
+//                        color = MaterialTheme.colorScheme.onErrorContainer
+//                    )
+//                )
+//            }
+//
+//            Text(
+//                text = "Kopi Nako Monas",
+//                style = TextStyle(
+//                    fontSize = 32.sp,
+//                    lineHeight = 40.sp,
+//                    fontWeight = FontWeight(400),
+//                    color = Color(0xFFFFFFFF),
+//                )
+//            )
+//
+//            Text(
+//                text = "JALAN JALAN GABUT - 4 Trips Left",
+//                style = TextStyle(
+//                    fontSize = 12.sp,
+//                    lineHeight = 16.sp,
+//                    fontWeight = FontWeight(700),
+//                    color = Color(0xFFFFFFFF),
+//                    letterSpacing = 0.5.sp,
+//                )
+//            )
+//        }
     }
 }
 
