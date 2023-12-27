@@ -41,10 +41,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.umn.kopicyber.klooyur.helper.comingSoonToast
 import com.umn.kopicyber.klooyur.navigations.Pagees
 import com.umn.kopicyber.klooyur.viewmodels.TripDetailViewModel
 import com.umn.kopicyber.klooyur.viewmodels.TripDetailViewModelFactory
@@ -58,6 +60,8 @@ fun PlaylistPage(
     val viewModel = viewModel<TripDetailViewModel>(factory = TripDetailViewModelFactory(tripId))
     // get trip data
     val tripData = viewModel.state
+
+    val context = LocalContext.current
 
     Scaffold(
         modifier = Modifier.fillMaxHeight(),
@@ -80,7 +84,7 @@ fun PlaylistPage(
                     )
 
                     Button(
-                        onClick = { /*TODO*/ },
+                        onClick = { comingSoonToast(context) },
                         modifier = Modifier
                             .padding(end = 16.dp)
                             .height(50.dp)
@@ -120,7 +124,7 @@ fun PlaylistPage(
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             },
-                            onClick = { /*TODO*/ },
+                            onClick = { comingSoonToast(context) },
                         )
                     }
                 }
@@ -175,7 +179,9 @@ fun PlaylistPage(
                         .width(80.dp)
                         .padding(start = 16.dp),
                     trailingContent = {
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(
+                            onClick = { comingSoonToast(context) },
+                        ) {
                             Icon(
                                 imageVector = Icons.Filled.Delete,
                                 contentDescription = "Delete Route"
