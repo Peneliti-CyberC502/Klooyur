@@ -1,6 +1,5 @@
 package com.umn.kopicyber.klooyur.pages
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -59,7 +58,7 @@ import com.umn.kopicyber.klooyur.viewmodels.HomeViewModel
 import kotlinx.coroutines.flow.firstOrNull
 
 
-@OptIn(ExperimentalFoundationApi::class)
+
 @Composable
 fun MainPage(
     navController: NavHostController
@@ -72,7 +71,7 @@ fun MainPage(
                 onClick = {
                     navController.navigate(route = Pagees.AddTripPage.name)
                 },
-                modifier = Modifier,
+                modifier = Modifier.padding(start = 16.dp),
             ) {
                 Icon(Icons.Filled.Add, "Small floating action button.")
             }

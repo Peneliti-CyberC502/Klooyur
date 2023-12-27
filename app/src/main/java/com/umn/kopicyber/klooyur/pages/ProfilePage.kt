@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Card
@@ -94,74 +95,113 @@ fun ProfilePage() {
                 .padding(top = 16.dp),
         )
 
-        Column {
-            ListItem(
-                headlineContent = {
-                    Text("My Account")
-                },
-//                supportingContent = {
-//                    Text("Secondary text that is long and perhaps goes onto another line")
-//                },
-//                leadingContent = {
-//                    Icon(
-//                        Icons.Filled.Favorite,
-//                        contentDescription = "Localized description",
-//                    )
-//                },
-//                trailingContent = { Text("meta") }
-            )
-            Divider()
+        LazyColumn(content =
+        {
+            item {
+                ListItem(
+                    headlineContent = {
+                        Text("My Account")
+                    }
+                )
+                Divider()
+            }
+            item {
+                ListItem(
+                    headlineContent = {
+                        Text("Settings")
+                    }
+                )
+                Divider()
+            }
+            item {
+                ListItem(
+                    headlineContent = {
+                        Text("Github Repo")
+                    }
+                )
+                Divider()
+            }
+            item {
+                ListItem(
+                    headlineContent = {
+                        Text("Logout")
+                    }
+                )
+                Divider()
+            }
 
-            ListItem(
-                headlineContent = {
-                    Text("Settings")
-                },
-//                supportingContent = {
-//                    Text("Secondary text that is long and perhaps goes onto another line")
-//                },
-//                leadingContent = {
-//                    Icon(
-//                        Icons.Filled.Favorite,
-//                        contentDescription = "Localized description",
-//                    )
-//                },
-//                trailingContent = { Text("meta") }
-            )
-            Divider()
-
-            ListItem(
-                headlineContent = {
-                    Text("Github Repo")
-                },
-//                supportingContent = {
-//                    Text("Secondary text that is long and perhaps goes onto another line")
-//                },
-//                leadingContent = {
-//                    Icon(
-//                        Icons.Filled.Favorite,
-//                        contentDescription = "Localized description",
-//                    )
-//                },
-//                trailingContent = { Text("meta") }
-            )
-            Divider()
         }
-
-        ListItem(
-            headlineContent = {
-                Text("Logout")
-            },
-//                supportingContent = {
-//                    Text("Secondary text that is long and perhaps goes onto another line")
-//                },
-//                leadingContent = {
-//                    Icon(
-//                        Icons.Filled.Favorite,
-//                        contentDescription = "Localized description",
-//                    )
-//                },
-//                trailingContent = { Text("meta") }
         )
-        Divider()
+
+
+//        Column {
+//            ListItem(
+//                headlineContent = {
+//                    Text("My Account")
+//                },
+////                supportingContent = {
+////                    Text("Secondary text that is long and perhaps goes onto another line")
+////                },
+////                leadingContent = {
+////                    Icon(
+////                        Icons.Filled.Favorite,
+////                        contentDescription = "Localized description",
+////                    )
+////                },
+////                trailingContent = { Text("meta") }
+//            )
+//            Divider()
+//
+//            ListItem(
+//                headlineContent = {
+//                    Text("Settings")
+//                },
+////                supportingContent = {
+////                    Text("Secondary text that is long and perhaps goes onto another line")
+////                },
+////                leadingContent = {
+////                    Icon(
+////                        Icons.Filled.Favorite,
+////                        contentDescription = "Localized description",
+////                    )
+////                },
+////                trailingContent = { Text("meta") }
+//            )
+//            Divider()
+//
+//            ListItem(
+//                headlineContent = {
+//                    Text("Github Repo")
+//                },
+////                supportingContent = {
+////                    Text("Secondary text that is long and perhaps goes onto another line")
+////                },
+////                leadingContent = {
+////                    Icon(
+////                        Icons.Filled.Favorite,
+////                        contentDescription = "Localized description",
+////                    )
+////                },
+////                trailingContent = { Text("meta") }
+//            )
+//            Divider()
+//        }
+//
+//        ListItem(
+//            headlineContent = {
+//                Text("Logout")
+//            },
+////                supportingContent = {
+////                    Text("Secondary text that is long and perhaps goes onto another line")
+////                },
+////                leadingContent = {
+////                    Icon(
+////                        Icons.Filled.Favorite,
+////                        contentDescription = "Localized description",
+////                    )
+////                },
+////                trailingContent = { Text("meta") }
+//        )
+//        Divider()
     }
 }
